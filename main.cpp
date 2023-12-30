@@ -5,11 +5,12 @@
 
 using namespace std;
 
+// declare the node Object
 class node
 {
 protected:
-    int _times = 0;
-    char _value;
+    int _times = 0; // store the frequency of values
+    char _value;    // the value
     node *_left = NULL;
     node *_right = NULL;
 
@@ -53,6 +54,7 @@ public:
     ~node() { delete this; }
 };
 
+// declare the tree object
 class tree : public node
 {
 private:
@@ -69,6 +71,7 @@ public:
     {
         return this->_root;
     }
+    // combine two nodes which are the lowest frequency nodes into a node named parent
     void *combine_nodes(node *node1)
     {
         node *parent = new node(this->get_root()->get_times() + node1->get_times());
@@ -131,13 +134,9 @@ int main()
     {
         int flag = find(nodes, s[i]);
         if (flag == -1)
-        {
             nodes.push_back(make_pair(1, s[i]));
-        }
         else
-        {
             nodes[flag].first++;
-        }
     }
     sort(nodes.begin(), nodes.end(), [](pair<int, char> p1, pair<int, char> p2)
          { return p1.first < p2.first; });
